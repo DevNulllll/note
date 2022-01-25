@@ -1,0 +1,2 @@
+直接设置<A-key>不成功，需要设置为^[key 的形式，即先输入ctrl+v（打印^），再输入alt+key（打印[key）
+例如 inoremap ^[j  <down>

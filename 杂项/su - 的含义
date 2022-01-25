@@ -1,0 +1,3 @@
+su - user切换用户并保证shell为login mode,即环境变量，工作目录等一同切换
+
+su  user指切换身份，后续命令以user身份执行，不切换环境

@@ -1,0 +1,15 @@
+vim 中的选项包括两大类：布尔和非布尔
+
+对于布尔值
+set <name>打开选项
+set no<name> 关闭选项
+set <name>! 切换状态
+
+对于非布尔值
+set <name>=<value>
+
+
+使用set <name>? 可以查询选项当前的值（或者开关状态）
+
+
+同一行可以设置多个选项 set <name> <name2> ...

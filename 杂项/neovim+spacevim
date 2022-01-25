@@ -1,0 +1,9 @@
+(windows) .SpaceVim/init.vim 中添加 let g:python3_host_prog = "path to python3"
+          (需安装pynvim, pip3 install pynvim)
+
+
+clangd在windows下不能识别MinGW的标准库，需在源代码根目录创建一个compile_flags.txt文件，里面加上
+ --target=x86_64-w64-windows-gnu
+
+
+set autochdir   使vimfiler打开目录时以当前文件所在目录为起点

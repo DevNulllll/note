@@ -1,0 +1,1 @@
+1. 用户和组都用数字标识（UID,GID），分别在/etc/passwd 和/etc/group 中映射

@@ -1,0 +1,11 @@
+ch4.1.1
+
+decltype作用于左值得到引用类型
+int *p;
+decltype(*p)结果是int&
+decltype(&p),取地址得到右值，所以结果为int **
+
+
+decltype用于函数返回函数类型，而不是函数指针（ch6.7）
+
+

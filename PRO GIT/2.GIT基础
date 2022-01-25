@@ -1,0 +1,53 @@
+1.git init
+  git status    -s输出紧凑格式，新添加未跟踪（没有add）的文件前为？？，
+                                A表示新添加到暂存区的文件（从未跟踪到暂存），
+                                左边M表示已修改并以暂存
+                                右边M表示已修改但未暂存
+  git add
+  git commit -m "注释"  -a(跳过git add 的步骤，直接把工作区的修改入库)
+  git clone git://github.com/schacon/grit.git mygrit(可以自命名项目名称)
+  git reflog   记录每一次的命令
+  git log --pretty=oneline   提交记录
+  
+2.  .gitignore文件添加无需纳入git管理的文件，规则如下：
+    1.注释以#开头
+    2.支持标准glob模式匹配
+    3.模式最后加/表示要忽略的目录
+    4.模式以/开头防止递归
+    5.模式前加！表示取反
+
+3.  git reset  --hard   HEAD^  回退到上个版本
+    HEAD表示当前版本，HEAD^表示上个版本
+
+    如果只想回退版本中的某一个文件，先将整个版本回退，复制出该文件，再将版本返回，用文件的旧版本覆盖新版本
+
+    git reset HEAD file  取消暂存区中的文件，若库中已有该文件，则状态变为unstaged,若库中没有该文件，则状态为untracked
+
+4. git diff 比较未暂存的修改（工作区中的修改，如果有还在暂存区而未提交的版本，则和该版本比较，否则和版本库比较）
+   git  diff --cached  （--staged）比较已暂存的内容和上次提交之间的差异  
+
+5. git rm 删除文件（版本库和本地，需要commit提交删除操作）
+   --cached 只删除版本库中的文件，但保留本地文件，本地文件变为untracked
+   -f 删除修改过，或添加到暂存区但未commit的文件（本地文件也被删除，删除不可恢复）
+
+6. git mv file_from file_to  改名或移动文件操作
+   相当于 mv file_from file_to ,  git rm file_from  ,  git add file_to  三条命令的组合（完全一致）
+
+7. git remote -v  列出远程服务器的简写及其地址
+   git remote add <shortname> <url>添加远程仓库并命名为ShortName
+   git remote show <name>  显示远程仓库详细信息
+   git remote rename <name> <new name>  远程仓库重命名
+   git remote remove <name>  删除远程仓库
+
+   git fetch <remote>  访问远程仓库，拉取本地还没有的数据
+
+8. git tag 列出所有标签（匹配某个特定模式要加 -l）
+   git tag -a <tagname> [哈希值] -m "标签信息"      添加附注标签  （没有-a是添加轻量标签）
+   git tag -d <tagname>   删除本地标签，不会对远程产生影响
+
+9. git checkout -- file  撤销工作区中的修改，恢复到上次提交时的版本,如果暂存区有已暂存的版本，则不会回退？
+
+10. git branch 显示所有分支
+   -d 删除分支
+   -v 显示每个分支的最后一次提交
+   --merged  --no-merged  显示已合并或者未合并的分支，-D强制删除未合并的分支

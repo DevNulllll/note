@@ -1,0 +1,27 @@
+for(int i=0;i<n-1;i++){
+    for(int j=0;j<n-i-1;j++){
+        if(A[j]<A[j+1]){
+            swap(A[j],A[j+1]);
+        }
+    }
+}
+
+先考虑单趟冒泡，从第一个元素至倒数第二个元素，每次都和后继比较，由此得出内层循环for(int j=0;j<n-1;j++)
+
+由于每趟冒泡都能确定一个元素的位置，所以改进内层循环为for(int j=0;j<n-i-1;j++)，使每趟冒泡所需遍历的长度递减
+
+因为一共要确定n-1个元素（最后一个元素自然就位），所以外层循环为for(int i=0;i<n-1;i++)
+
+
+改进版
+
+bool sorted=false;
+while(!sorted){
+    sorted=true;
+    for(int i=1;i<n;i++){
+        if(A[i-1]>A[i]){
+            swap(A[i-1],A[i]);
+        }
+    }
+    n--;
+}

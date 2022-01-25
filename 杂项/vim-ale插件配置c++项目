@@ -1,0 +1,4 @@
+在.vimrc 的中添加
+let g:ale_cpp_cc_options = '-Wall -O2 -std=c++14 -I/aa/bb'
+
+-I 后指定该项目需要include的头文件路径(临时方案)

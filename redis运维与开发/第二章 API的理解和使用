@@ -1,0 +1,142 @@
+=================全局命令
+keys * 
+dbsize
+exists key
+del key [key ...]
+expire key seconds  -1没有设置过期时间  -2键已删除,seconds为负值健会立即被删除
+pexpire设置过期时间为毫秒
+persist key   清除键的过期时间
+set会使过期时间失效
+redis不支持对二级数据结构内部元素设置过期时间
+
+
+
+ttl   key            返回剩余过期时间
+type  key            返回键的数据类型
+object encoding key  返回内部编码实现
+
+
+
+==================单线程模型为什么快：
+1.纯内存访问，内存响应时间为100纳秒，可以实现每秒万级别的访问
+2.非阻塞io,使用epoll多路复用
+3.没有线程切换和竞态产生的消耗
+
+单线程的问题： 某个命令执行时间过长，会造成其他命令阻塞（Redis是面向快速执行场景的数据库）
+
+
+====================String类型操作命令：
+set key value [ex seconds] [ps millisecond] [nx|xx]
+setex key seconds value
+setnx key value  键不存在时可以设置，多个客户端设置同一个键只有一个能成功，可作为分布式锁的一中实现方案（http://redis.io/topics/distlock）
+
+mset key1 value1  key2 value2 ...(批量设置和获取可节省多次操作的网络IO时间)
+get  key 
+mget key1 key2 ...
+
+incr/decr key  (键不是整数返回错误，键不存在从0开始自增)
+incrby/decrby number
+incrbyfloat
+
+append key value  数字value追加值会转为字符串
+strlen key
+getset key value 
+setrange key offset value
+getrange key start end     返回[start,end]
+
+
+============hash命令
+hset key field value  [field2 value2  ...]
+hsetnx key filed value
+hset key field
+hdel key field [field ...]
+hlen key
+hmget key field [field2 ...]  对应的hmset以弃用，hset可实现hmset的功能
+hexists key field
+hkeys key    获取所有的field
+hvals key    获取所有value
+hgetall key  获取所有field-value  
+
+hincrby / hincrbyfloat   key field
+hstrlen key field
+
+
+============列表命令
+lpush / rpush key value1 value2 ...
+lpop / rpop key
+linsert key before|after pivot value
+lrem key count value  删除值为value的元素，count>0从左到右删count个，count<0从右到左删count个，count=0删除所有
+ltrim key  start end  删除[start,end]之外的元素
+
+lrange key start end   从左到右为0到n-1，从右到左为-1到-n
+lindex key index
+llen key 
+lset key index newValue
+
+blpop / brpop  key [ke ...]  timeout   timepout=0且列表为空则一直阻塞，多个键时从左到右遍历，对第一个不为空的列表执行pop
+
+
+
+======集合命令
+sadd key element [element ...]
+srem key element [element ...]
+scard key     返回元素个数 O(1)
+sismember key element
+
+srandmember key [count]   随机返回指定个数的元素，count默认为1
+spop key [cuont]  随机弹出元素
+smembers key  获取所有元素
+
+sinter key1 [key2 ...]
+sunion key1 [key2 ...]
+sdiff  key1 [key2 ...]
+sinterstore / sunionstore / sdiffstore  destination key [key ...]
+
+
+
+========有序集合
+zadd key [nx|xx] [ch] [incr] score member [score member ...]
+zcard key
+zscore key member 
+zrank key member   从低到高
+zrevrank key member
+zrem key member [member ...]
+zincrby key increment member
+
+zrange    key start end [withscores]  从低到高返回范围内成员，withscores表示返回分数
+zrevrange key start end [withscores]
+
+zrangbyscore      key min max [withscores] [limit offset count]    limit限制起始位置和个数,min和max支持开区间()和闭区间[],+inf，-inf表示无穷
+zrevrangebyscore  key max min [withscores] [limit offset count] 
+zcount key min max   返回指定范围的member个数
+
+zremrangebyrank key start end   删除指定范围内的升序元素
+zremrangebyscore key min max    删除指定分数范围内的member
+
+zinterstore / zunionstore destination numkeys key [key ...] [weights weight ...] [aggregate sum|max|min]  weights指定每个键的权重，默认为1，aggregate指定对分数的操作，默认为sum
+
+
+
+
+==========单个键操作
+rename   key newkey   newkey已存在会被覆盖
+renamenx key newkey
+randomkey   
+
+迁移键的三种方式：
+move  key db     同一个redis实例中的不同db之间迁移
+
+dump key
+restore key ttl value      ttl为0表示不设置过期时间，迁移不具有原子性，dump结果不在源和目的redis之间传输，而是在两个redis客户端之间传输
+
+migrate host-ip port  key|""  dest-db timeout [copy] [replace] [keys key1 key2 ...]
+
+遍历键：
+keys  支持glob通配
+scan / hscan /sscan / zscan  cursor [pattern] [count]  渐进式遍历，如果遍历过程中键有变化，可能有的键无法遍历到，或者返回重复的键
+
+
+
+============数据库管理
+select dbindex
+flushdb / flushall       键值较多时可能会阻塞数据库

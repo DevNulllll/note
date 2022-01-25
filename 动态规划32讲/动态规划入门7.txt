@@ -1,0 +1,98 @@
+动态规划入门7
+分类：算法与数据结构 
+
+例题6 
+
+砝码称重
+
+来源：NOIP1996（提高组）  第四题
+
+【问题描述】
+
+    设有1g、2g、3g、5g、10g、20g的砝码各若干枚（其总重<=1000），用他们能称出的重量的种类数。
+
+【输入文件】
+
+  a1  a2  a3  a4  a5  a6
+
+    （表示1g砝码有a1个，2g砝码有a2个，…，20g砝码有a6个，中间有空格）。
+
+【输出文件】
+
+  Total=N
+
+    （N表示用这些砝码能称出的不同重量的个数，但不包括一个砝码也不用的情况）。
+
+【输入样例】
+
+    1 1 0 0 0 0
+
+【输出样例】
+
+    TOTAL=3
+
+【问题分析】
+
+把问题稍做一个改动，已知a1+a2+a3+a4+a5+a6个砝码的重量w[i], w[i]∈{ 1,2,3,5,10,20} 其中砝码重量可以相等，求用这些砝码可称出的不同重量的个数.
+
+这样一改就是经典的0/1背包问题的简化版了，求解方法完全和上面说的一样，这里就不多说了，只是要注意这个题目不是求最大载重量，是统计所有的可称出的重量的个数。
+
+【源代码1】
+
+program fmcz;
+type  
+  re=record  
+       sum:longint;  
+       weight:longint;  
+     end;  
+var  
+  a:array[1..6]of re;  
+  f_bool:array[0..1000]of boolean;  
+  ans:longint;  
+procedure init;  
+begin  
+  assign(input,'fama.in');  
+  assign(output,'fama.out');  
+  reset(input); rewrite(output);  
+end;  
+  
+procedure terminate;  
+begin  
+  close(input); close(output);  
+  halt;  
+end;  
+  
+procedure main;  
+var  
+  t,i,j,k:longint;  
+  
+begin  
+  a[1].weight:=1; a[4].weight:=5;  
+  a[2].weight:=2; a[5].weight:=10;  
+  a[3].weight:=3; a[6].weight:=20;  
+  for t:=1 to 10 do  
+  begin  
+    for i:=1 to 6 do  
+      read(a[i].sum);  
+    //fillchar(f,sizeof(f),0);  
+    fillchar(f_bool,sizeof(f_bool),false);  
+    f_bool[0]:=true;  
+    for i:=1 to 6 do  
+      for j:=1000 downto 0 do  
+        if f_bool[j] then  
+        for k:=1 to a[i].sum do  
+          begin  
+            f_bool[j+a[i].weight*k]:=true;  
+          end;  
+    ans:=-1;  
+    for i:=0 to 1000 do  
+      if f_bool[i] then inc(ans);  
+    writeln('TOTAL=',ans);  
+  end;  
+end;  
+  
+begin  
+  init;  
+  main;  
+  terminate;  
+end.

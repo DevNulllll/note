@@ -1,0 +1,2 @@
+1. C struct 在C++中的一个合理用途：当传递一个复杂Class object的全部或部分到一个C函数时，struct声明可以将数据封装起来，保证
+    拥有与C兼容的空间布局（只在组合的情况下保证，如果时继承而非组合，编译器可能在base struct object 中安插额外的data members）

@@ -1,0 +1,33 @@
+1.换源
+
+2.中文输入法
+   1.安装中文包
+     apt-get install ttf-wqy-microhei  tty-wqy-zenhei xfonts-wqy
+
+   2.安装中文输入法
+     apt-get install fcitx  fcitx-googlepinyin
+   3.配置中文输入法
+     fcitx configuration 左下角加号，添加google拼音，设置输入法切换方式（默认Ctrl+space）
+   4.以下方法更改系统默认语言
+     dpkg-reconfigure locales
+     选中en_US.UTF-8  zh_CN.UTF-8  zh_CN.GBK
+     将zh_CN.UTF-8选为默认
+     重启系统
+
+
+3.配置clash
+  下载clash-linux-64
+  替换.config/clash/config.yaml文件，下载Country.mmdb文件
+  改系统代理
+  配置界面clash.razord.top
+  nohup clash >/dev/null 2>&1 &
+
+4.挂载U盘
+  fdisk -l 查看设备
+  mount /dev/**  /mnt
+  umount  /mnt
+
+5.caps映射为ctrl
+  在session and startup程序中添加：
+  name :remap_caps
+  command: setxkbmap -option "ctrl:nocaps"

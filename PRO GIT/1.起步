@@ -1,0 +1,21 @@
+
+多数版本控制系统保不同版本的差异，git保存不同版本的快照，是一个快照流
+
+暂存区域是个文件，保存了将要提交的文件列表信息，有时也被称作索引
+
+1.git配置文件
+  /etc/gitconfig    针对所有用户  git config  --system
+  ~/.gitconfig      针对当前用户  git config  --global
+  .git/config       针对当前仓库
+  每一级别的配置都会覆盖上层级别的相同配置
+
+2.git配置
+  git config --global user.email
+  git config --global user.name
+  git config --global core.editor emacs
+  git config --global merge.tool vimdiff
+  git config --global init.defaultBranch main
+  git config --list   --show-origin  列出已有配置信息（重复变量名来自不同配置文件，实际只采用最后一个）,origin显示在哪里配置
+  git config --global alias.st status   将 git status 别名设置为st
+
+3. git help <verb> 获取命令verb的帮助

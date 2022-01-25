@@ -1,0 +1,67 @@
+vim --version  查看安装特性
+
+
+
+
+设置swap文件目录
+set directory=$HOME/.vim/swap// 
+取消生成swap文件
+set noswapfile
+
+
+
+移动 w , e , b , W , E , B, 
+使用{  ， }进行段间移动（至少两空行分隔成段）
+ge移动到上个单词尾
+shift + <{,}>移动到段头，段尾
+shift + <(,)>移动到sentence头尾
+H移动到当前屏的首部，L移动到当前屏的尾部
+<c-f>向下滚屏，<c-b>向上滚屏
+gg到文件头，G到文件尾
+0移动到行首，$移动到行尾
+
+
+
+:N 移动到第N行(设置set number)
+:+N  :-N 向前后移动N行(设置set relativenumber相对行号)
+
+gi进入插入模式，插入位置为上次退出插入模式的位置
+
+WORD以空白符分隔，word以除字母，数字，下划线之外的符号分隔（包括空白符，小括号，逗号，冒号）
+
+
+
+
+
+
+
+c 修改命令，并进入插入模式，  c + 数字 + 移动命令 ，例如c3w
+C修改光标至行尾
+cc（或者大写S）修改整行，如果设置了autoindent，则进入插入模式时，还会保留该行的缩进
+s（数字N+s）进入插入模式并修改从光标处开始的N个字母(c3l,c3h有同样效果且可左右移动，s只能向右)
+以上均遵循格式 ： <command> <number> <movement or a text object> 
+
+
+
+
+set  undofile 保留修改撤销历史
+
+
+
+:h (help) keyword  如果关键字不明确，可在keyword后按ctrl-D列出所有含keyword的关键字
+
+
+
+
+
+编译安装vim
+git clone https://github.com/vim/vim.git
+cd ./vim
+./configure --with-features=huge \
+            --enable-pythoninterp=yes \
+            --enable-python3interp=yes \
+            --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+            --with-python3-config-dir=/usr/lib/python3.9/config-3.9-x86_64-linux-gnu
+            --prefix=/usr/local
+编译安装选项
+搜  installing vim with <fearture> on <operating system>

@@ -1,0 +1,6 @@
+echo只能在窗口底部打印消息，随着程序执行消息会消失，
+echom输出的消息会保存在messgages列表中，调试vimscript脚本时可用
+:messages clear 清空消息列表
+
+normal模式下快捷键g<重新显示上条command的输出，可在意外关闭上条命令的结果后重新显示
+

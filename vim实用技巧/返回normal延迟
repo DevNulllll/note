@@ -1,0 +1,1 @@
+使用ctrl-[由insert返回normal模式有明显延迟，改用ctrl-c做模式切换

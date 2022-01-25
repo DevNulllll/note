@@ -1,0 +1,13 @@
+L[a:b]=[c,d,e,f]    将列表的某一段替换为指定值，前后长度可以不相同，
+                    右侧为空列表时，表示删除列表中相应的部分
+
+
+L[:0] = [a,b,c,d]   在列表头部插入，等价于 L.insert(0,[a,b,c,d])
+L[len(L):]=[a,b]    在列表尾部插入，等价于 L.append(a) 或者 L.extend([a,b])
+
+
+内置函数sorted排序列表返回新列表，list.sort方法原处修改列表，返回None
+内置函数reversed同理(需要包装在list中，list(reversec(L)))
+
+
+

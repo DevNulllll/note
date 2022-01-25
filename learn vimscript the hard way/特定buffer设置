@@ -1,0 +1,7 @@
+:setlocal number只对当前buffer生效
+
+:nnoremap <buffer> <leader>x dd 令映射只对当前buffer有效(命令写入vimrc后只在执行该命令时生效，即
+重启vim或者source vimrc时，相当于对已打开的所有buffer执行该命令)
+
+
+buffer特定的设置会屏蔽全局设置

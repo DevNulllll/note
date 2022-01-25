@@ -1,0 +1,113 @@
+1. 不使用插件管理器安装插件
+    mkdir -p ~/.vim/pack/plugins/start   //在start目录中git clone插件
+
+    安装插件文档，在.vimrc中添加
+    packloadall
+    silent! helptags ALL
+
+
+
+2.  每个打开文件对应一个buffer,部分插件也有自己的buffer 
+    :ls (或者files和buffers命令)列出当前打开的buffer
+    :b <number>  :bp  :bn  切换buffer
+    :bd 关闭buffer，同时关闭窗口,但仅有一个窗口是不会关闭vim
+
+    command！ Bd :bp | :sp | :bn | :bd  使用:Bd关闭Buffer但不关闭窗口
+
+
+3. windows 是buffer呈现的视图
+   :sp 水平分屏，:vs 垂直分屏
+
+   <c-w>+ <h,j,k,l>光标在窗口间移动
+   noremap <c-h> <c-w><c-h>  设置<c-h>为窗口间移动光标
+
+   <c-w>+q 关闭当前窗口但不关闭buffer，:q关闭窗口同时关闭buffer，如果当前仅有一个窗口，则同时关闭vim
+   <c-w>+o 关闭除当前窗口外的其他所有窗口，等同于 :on   或者 :only
+   :qa 退出所有窗口，:wqa 退出所有窗口并保存
+
+   <c-w>+<H,J,K,L> 移动窗口
+   <c-w>+r 循环移动窗口，r代表rotate，R 反向
+   <c-w>+x 交换窗口内容
+
+
+    <c-w> + = 使所有窗口等宽高
+    <c-w>+<-,+>调整高度，<c-w>+<<,>>调整宽度  （每次一个单位）
+    :res  +/- N  调整高度   :vert res +/- N 调整宽度
+
+
+
+4. :tabnew 新建tab     :tabnew <filename>在新Tab中打开文件
+
+    gt  gT  或者 :tabnext   :tabbprevious  切换Tab
+    :tabmove N   将当前tab置为第N个 （从0算起）
+    :tabclose  关闭tab
+
+
+5.  set foldmethod=indent 设置代码折叠方式为按 缩进折叠（支持manual,indent,expr,marker,syntax,diff等方式）
+
+    zc  zo  打开关闭折叠，或者用za在两种状态间切换
+    zR  zM  打开关闭当前文件所有折叠
+
+    上述设置打开文件时默认折叠所有代码，
+    设置 autocmd BufRead * normal zR  在打开文件时执行zR命令，打开所有折叠
+
+
+6.  vim内置目录管理插件为Netrw(支持打开远程sftp   :Ex sftp://<domain>/<dir>/)
+    
+    :Ex打开netrw （或者:e .）
+   
+    D删除目录或者文件
+    d新建目录
+    %新建文件
+    -进入上层目录
+    enter打开目录
+    R重命名目录或者文件
+
+    :Vex  :Lex  垂直打开netrw
+    :Sex  水平打开netrw
+
+
+
+
+7.  设置set  hlsearch搜索高亮，set incsearch 增量搜索  :noh取消高亮
+    
+
+
+8.  使用grep或者vimgrep在文件间搜索关键字
+
+
+
+9. 使用文本对象
+   w,W,代表word和WORD
+   s 代表sentence
+   p 代表paragraph
+   t 代表html/xml tags
+   被` , ' , " , ) , ] , } 等包围的文本
+
+   以上都被视作文本对象，是操作命令的操作目标
+   例如di)删除括号中的内容，da)删除括号中的内容，包括括号
+   i不包括空白字符和包围符号，a包括空白字符和包围符号
+
+   格式为  operate + 数字（可选） + <i,a> + 文本对象
+
+
+
+
+10. set wilemenu
+    :e <space><tab>可浏览目录，enter打开文件，上下箭头进入退出目录，shift+tab反向浏览
+    set wildmode=list:longest,full 显示目录完整信息
+    
+
+   
+
+11. unimpaired插件，yoc打开关闭curseline,yox打开十字坐标线，yos打开关闭spell check
+
+
+12.y命令复制内容后，粘贴时从光标位置之后开始插入
+    yy复制一行，包括换行符，所以执行p自动另起一行粘贴
+   
+   
+   
+13. 在insert模式，ctrl-r+<寄存器名>可以粘贴寄存器中的内容
+    :reg列出当前所有寄存器中的内容
+    使用大写寄存器名可向寄存器追加内容，例如 "Ayw 向a中追加复制一个word

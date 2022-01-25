@@ -1,0 +1,32 @@
+对所求元素有秩的要求时，写为while(hi-lo>1),循环中按秩最大或者最小，分别移动lo和hi,最后在循环外返回
+
+没有秩的要求时,写为while(lo<hi)，循环中满足条件即返回
+
+
+while(lo<hi){
+    int mid=(lo+hi)/2;
+    if(A[mid]>e)hi=mid;
+    else if(A[mid]<e)lo=mid+1;
+    else return mid;
+}
+
+while(1<hi-lo){
+    int mid=(lo+hi)/2;
+    if(A[mid]>e)hi=mid;
+    else lo=mid;
+}
+return lo;
+
+
+while(1<hi-lo){
+    int mid=(lo+hi)/2;
+    (e<A[mid])?hi=mid:lo=mid;
+}
+return A[lo]==e?lo:-1;
+
+
+while(lo<hi){
+    int mid=(lo+hi)/2;
+    (e<A[mid])?hi=mid:lo=mid+1;
+}
+return lo-1;

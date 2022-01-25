@@ -1,0 +1,5 @@
+bind1st(const Operation &op, const T& x);
+bind2nd(const Operation &op, const T& x);
+
+其中op为二元运算符，bind1st意思为绑定第一个操作数为x, 执行 x op value
+反之bind2nd绑定第二个操作数，执行 value op x

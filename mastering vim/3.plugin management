@@ -1,0 +1,21 @@
+1. 手动添加插件：第二章
+
+
+2. 不同机器同步vim配置，在.vimrc中添加
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+     \ https://github.com/jumegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+
+
+3.命令模式下 : ,按 ctrl-f打开历史输入的命令列表，该列表是一个可编辑的buffer,ctrl-c关闭该buffer
+
+
+4.normal模式下按Q进入Ex模式，该模式是command模式的一个变体，可连续执行多条命令，而不必执行完一条命令后退出command模式
+
+
+5.在visual mode中时，o键可在选择区域的两端切换
+
+
+6. let mapleader = ',' 的定义只对之后的定义生效，应在.vimrc开头定义leaderkey

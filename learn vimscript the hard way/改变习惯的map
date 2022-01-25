@@ -1,0 +1,5 @@
+nnoremap <c-[> <nop>
+将旧的map 设置为nop可以快速熟悉新的映射
+
+常用比如
+inoremap <up> <nop>

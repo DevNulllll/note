@@ -1,0 +1,4 @@
+字符串长度为len,按width一组分为n组
+n=(len-1)/width+1
+
+**处理边界情况len=width

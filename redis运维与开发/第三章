@@ -1,0 +1,29 @@
+=============慢查询
+配置参数： slowlog-log-slower-than   slowlog-max-len
+
+slowlog  get [n]  获取慢查询日志，n指定条数
+slowlog  len
+slowlog  reset
+
+
+==============pipeline
+pipeline与原生批量操作的区别：
+1.pipeline是非原子的，--pipe是原子的
+2.pipeline支持多条命令，--pipe一条命令对应多个key
+3.--pipe由服务端实现，pipeline由客户端和服务端共同实现
+
+
+
+
+===================事务
+multi和exec之间的命令原子执行
+不提供回滚功能
+
+
+
+
+==========发布订阅
+publish    channel message
+subscribe  channel [channel ...]
+unscribe
+

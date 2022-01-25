@@ -1,0 +1,11 @@
+1.IP协议校验和字段只校验头部,其他协议校验和字段检查头部和数据
+
+2. IPv4 0x800   IPv6 0x86dd    ARP 0X806   RARP  0X835   (在以太网帧协议类型字段中的值)
+   ICMP 1    UDP  17     TCP 6    （在IPv4协议类型字段中的值）
+
+3.  ICMP 3目的不可达  5重定向  8查询目的是否可达
+
+4.  arp  -d删除arp条目   -s添加arp条目   -a打印arp缓冲内容
+
+5. /etc/resolv.conf 保存DNS服务器地址（端口53）  ，host是Linux中常用的 DNS客户端
+

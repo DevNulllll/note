@@ -1,0 +1,25 @@
+基本类型 
+    byte  short  int  long  
+    float double 
+    char（16）
+    boolean
+
+引用类型
+    对象
+
+布尔类型与其他类型不兼容，不能相互转换
+
+int转double没有精度丢失，转float丢失精度
+
+数值类型默认初值为0，布尔为false，引用类型默认初值为null
+
+数组为引用类型，数组变量在栈上分配，数组元素在堆中分配
+int[] a1 = new int[2147483647]; // 数组length属性为int类型
+int[] a2 = new int[0];
+int[] a3 = {1,2,3,4,5};
+int[] a4 = new int[]{1,2,3,4};
+
+int[][] arr = new int[3][4];
+int[][] arr2 = {{1,2}，{3,4}};
+java支持不规则多维数组
+int[][] arr3 = {{1,2},{1,2,3,4},{1,2,3,4,5,6}};

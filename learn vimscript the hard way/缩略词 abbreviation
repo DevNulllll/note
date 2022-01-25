@@ -1,0 +1,12 @@
+:iabbrev a b
+可以在插入模式中将a替换为b，前提是a不是某个单词的一部分，输入a后，再输入non-keyword（keyword指字符，数字，下划线等）执行替换
+set iskeyword？查看keyword包含的字符
+
+可用于纠正拼写错误或者添加将特定信息快速添加
+例如
+:iabbrev mian main 
+:iabbrev @@ email@xxx.com
+
+
+执行替换最好用iabbrev而不是inoremap 的映射，因为inoremap映射只要序列满足条件就会触发，而不会判断该序列是不是其他单词的一部分，从而造成误判
+

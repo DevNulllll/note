@@ -1,0 +1,9 @@
+1.使用--skip-grant-tables选项启动服务器并重新设置root密码
+  sudo systemctl mysql stop
+  sudo -u mysql /usr/sbin/mysqld --daemonize --pid-file=/usr/run/mysqld/mysqld.pid  --usr=mysql  --skip-grant-tables
+  mysql -u root 
+  alter USER 'root'@'localhost' identified by 'xxxx';
+  重启服务器
+
+
+  

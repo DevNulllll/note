@@ -1,0 +1,31 @@
+%[(keyname)][flags][width][.precision]typecode
+keyname支持关键字索引
+
+flags: 默认右对齐，
+       -为左对齐，
+       +表示数值符号
+       (空格)表示正数前的空白和负数前的-
+       0表示在前面以0填充
+
+width   表示字段宽度，
+        precision表示浮点数精度，
+        二者都可以用*替换，表示从输入中获取宽度和精度
+
+
+
+format方法
+{fieldname commponent !conversionflag :formatspec}
+
+fieldname   表示位置的数字或者关键字
+component   ".name" 或者 [index] 表示参数的属性或者索引值，可选
+conversionflag      !r  !s  !a  表示在参数上调用repr,str,ascii函数
+
+formatspec
+[[fill]align] [sign] [#] [0] [width] [,] [.precision] [typecode]
+
+fill    除{和}之外的任意填充字符
+align   < > = ^ 分别表示左对齐，右对齐，
+        符号字符后的填充(在数值符号和数值之间用fill表示的字符填充)，
+        居中对齐
+sign    + -表示数值符号
+
