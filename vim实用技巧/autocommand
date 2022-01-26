@@ -1,0 +1,9 @@
+autocommand中的命令部分不能使用<cr>等特殊字符
+
+augroup groupname
+    autocmd!
+    autocmd 1
+    autocmd 2
+    ...
+augroup END
+每次source的时候autocmd!自动清空该组内的命令，然后再依次定义下面的命令，防止每次source后重复执行autocmd

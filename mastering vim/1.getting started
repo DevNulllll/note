@@ -55,6 +55,8 @@ set  undofile 保留修改撤销历史
 
 
 编译安装vim
+先安装 llvm cmake
+安装Python2-dev
 git clone https://github.com/vim/vim.git
 cd ./vim
 ./configure --with-features=huge \
