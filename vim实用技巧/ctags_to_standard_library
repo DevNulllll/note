@@ -1,0 +1,5 @@
+在tags的目录~/.cache/tags中，生成c和cpp标准库的tags
+sudo ctags --fields=+niazS --extras=+q --c++-kinds=+px --c-kinds=+px -R -f ~/.cache/tags/c.tags /usr/include /usr/local/include
+sudo ctags --fields=+niazS --extras=+q --c++-kinds=+px --c-kinds=+px -R -f ~/.cache/tags/cpp.tags /usr/include/c++/10
+
+打开要编辑的源文件后执行 :setlocal tags+=~/.cache/tags/c.tags  或者  :setlocal tags+=~/.cache/tags/cpp.tags
