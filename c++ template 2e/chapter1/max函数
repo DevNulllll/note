@@ -1,0 +1,9 @@
+P3
+
+template<typename T>
+T max(T a,T b){
+    return b<a ? a : b;
+}
+只有在a严格大于b时才返回a，否则返回b，
+标准库中的版本有问题
+

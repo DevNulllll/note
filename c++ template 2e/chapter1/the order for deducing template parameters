@@ -1,0 +1,16 @@
+P10
+
+
+在所有模板参数中，最后一个不能由编译器自动推断的参数，以及之前的所有参数，都必须显式指出
+例如
+template<typename T1,typename T2,typename Rt>
+Rt max(T1 a,T2 b){}
+
+其中Rt不能自动推导，所以调用时必须指名所有三个模板参数
+max<int,double,double>(4,7.2)
+
+调整模板参数的声明顺序可以简化
+template<typename Rt,typename T1,typename t2>
+Rt max(T1 a,T2 b){}
+调用时只需指明返回类型
+max<double>(int,double)
