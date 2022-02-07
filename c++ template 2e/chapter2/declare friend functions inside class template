@@ -1,0 +1,23 @@
+P31
+
+
+当在类模板中声明友元函数(该函数依赖于模板参数)，并且在类声明之后定义该函数时，有两种方法
+
+1. 在类中将该函数声明为模板函数
+tmeplate<typename T>
+class Stack{
+    template<typename U>
+    friend std::ostream& operator<< (std::ostream&,Stack<T> const &);
+};
+
+2.在类外声明为模板函数，但需要类的前置声明，并且类中的友元声明需要在函数名后加 <T>
+template<typename T>
+class Stack;
+
+template<typename T>
+std::ostream& operator<< (std::ostream&,Stack<T> const &);
+
+template<typename T>
+class Stack{
+    friend std::ostream& operator<< <T> (std::ostream& ,Stack<T> const &);
+}
