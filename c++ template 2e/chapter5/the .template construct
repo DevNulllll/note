@@ -1,0 +1,6 @@
+template<unsigned long N>
+void printBitset(std::bitset<N> const& bs){
+    std::cout<<bs.template to_string<char,std::char_traits<char>,std::allocator<char>>();
+}
+
+因为bs依赖于模板参数N，如果调用to_string时不加.template，编译器无法区分to_string是函数还是其他，所以无法判断后面的<是小于号还是尖括号
