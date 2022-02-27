@@ -7,7 +7,7 @@ P31
 tmeplate<typename T>
 class Stack{
     template<typename U>
-    friend std::ostream& operator<< (std::ostream&,Stack<T> const &);
+    friend std::ostream& operator<< (std::ostream&,Stack<U> const &);
 };
 
 2.在类外声明为模板函数，但需要类的前置声明，并且类中的友元声明需要在函数名后加 <T>

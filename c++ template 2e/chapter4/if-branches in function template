@@ -1,0 +1,11 @@
+P58
+
+template<typename T,typename... Types>
+void print(T firstarg,Types... args){
+    std::cout<<firstarg<<std::endl;
+    if(sizeof...(args) > 0){
+        print(args...);
+    }
+}
+
+上面的方式是错误的，因为编译时会实例化if的两个分支，即参数数目大于0和小于等于0时的分支，但代码中没有定义接受0个参数的print版本

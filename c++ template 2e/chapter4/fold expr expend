@@ -1,0 +1,5 @@
+P60
+
+(std::cout<< ... <<AddSpace(args))
+可以理解为对参数包args中的每一个参数，替换args的位置
+因为AddSpace本身并不接受可变参数，因此这种写法不太清晰

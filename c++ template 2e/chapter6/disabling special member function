@@ -1,0 +1,19 @@
+P103
+
+
+默认拷贝，移动构造函数，拷贝，移动赋值运算符，总是比模板优先匹配，
+删除这些特殊成员函数也不行，这样后续相应的操作会报错找不到函数
+解决的办法是
+1.将特殊成员函数声明为接受const volatile类型,并标记为delete
+2.声明相应的模板函数
+
+template<typename T>
+class C{
+        public:
+            C(const volatile& C) = delete;
+
+            template<typename U, typename=std::enable_if_t<!std::is_integral<U>::value>>
+            C(const& C<U>){}
+};
+
+这样还能在模板参数不满足条件时忽略相应的构造函数

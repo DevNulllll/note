@@ -1,0 +1,15 @@
+template<typename T>
+class Base{
+    public:
+        void bar(){}
+};
+
+template<typename T>
+class Derived:Base<T>{
+    public:
+        void foo(){
+            void bar();
+        }
+};
+
+当使用基类中，依赖与模板参数的名字时，应该加this->或者base::限定，否则不会解析为基类中的名字，所以会出现错误或者引用其他的外部名字
