@@ -1,0 +1,4 @@
+P121
+
+SECTION mbr align=16 vstart=0x7c00
+段内所有标号的偏移值都要加上一个基础值vstart
