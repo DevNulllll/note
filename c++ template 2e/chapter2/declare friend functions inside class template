@@ -21,3 +21,4 @@ template<typename T>
 class Stack{
     friend std::ostream& operator<< <T> (std::ostream& ,Stack<T> const &);
 }
+加上<T>表示一个特例化版本
