@@ -1,0 +1,7 @@
+typedef struct SELF_REF_TAG{
+    int a;
+    struct SELF_REF_TAG *b;
+    int c;
+}SELF_REF;
+
+//struct后的是结构标签，用于声明变量时需要加上struct，打括号后的是类型名，声明变量时不用加struct
